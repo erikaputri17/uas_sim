@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Method</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .payment-options {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .payment-option {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+        width: 150px;
+        text-align: center;
+        transition: transform 0.3s ease, background 0.3s ease;
+        cursor: pointer;
+      }
+
+      .payment-option:hover {
+        transform: scale(1.1);
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .payment-option img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+      }
+
+      .payment-option span {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+
+      .receipt-container {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+        width: 90%;
+        max-width: 400px;
+      }
+
+      .receipt-container h2 {
+        margin-bottom: 10px;
+      }
+
+      .receipt-container p {
+        margin: 5px 0;
+      }
+
+      .complete-payment-btn {
+        margin-top: 30px;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        background-color: #ff7e67;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+      }
+
+      .complete-payment-btn:hover {
+        background-color: #ff5a40;
+        transform: translateY(-3px);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Select Payment Method</h1>
+    <div class="payment-options">
+      <div class="payment-option" onclick="selectPayment('Bank Transfer')">
+        <span>Bank Transfer</span>
+      </div>
+      <div class="payment-option" onclick="selectPayment('ShopeePay')">
+        <span>ShopeePay</span>
+      </div>
+      <div class="payment-option" onclick="selectPayment('OVO')">
+        <img src="icons/ovo.png" alt="OVO" />
+        <span>OVO</span>
+      </div>
+      <div class="payment-option" onclick="selectPayment('GoPay')">
+        <img src="icons/gopay.png" alt="GoPay" />
+        <span>GoPay</span>
+      </div>
+    </div>
+
+    <div class="receipt-container" id="receipt">
+      <h2>Payment Receipt</h2>
+      <p><strong>Item Name:</strong> <span id="itemName"></span></p>
+      <p><strong>Price:</strong> <span id="itemPrice"></span></p>
+      <p><strong>Payment Method:</strong> <span id="paymentMethod"></span></p>
+      <p><strong>Payment Code:</strong> <span id="paymentCode"></span></p>
+      <p><em>Note: This code will expire in 24 hours.</em></p>
+      <button class="complete-payment-btn" onclick="confirmPayment()">Mark as Paid</button>
+    </div>
+
+    <script>
+      // Data item yang dipilih
+      const selectedItem = {
+        name: "Tenda Single",
+        price: "Rp 125,000",
+      };
+
+      localStorage.setItem("selectedItem", JSON.stringify(selectedItem));
+
+      // Generate kode pembayaran unik
+      function generatePaymentCode() {
+        return Math.floor(100000 + Math.random() * 900000); // 6-digit code
+      }
+
+      let selectedPayment = "";
+      let paymentCode = "";
+
+      function selectPayment(method) {
+        selectedPayment = method;
+        paymentCode = generatePaymentCode();
+
+        // Tampilkan detail struk pembayaran
+        document.getElementById("itemName").textContent = selectedItem.name;
+        document.getElementById("itemPrice").textContent = selectedItem.price;
+        document.getElementById("paymentMethod").textContent = selectedPayment;
+        document.getElementById("paymentCode").textContent = paymentCode;
+
+        document.getElementById("receipt").style.display = "flex";
+      }
+
+      function confirmPayment() {
+        alert("Payment Successful! Thank you.");
+        window.location.href = "sukses.html"; // Arahkan ke halaman sukses
+      }
+
+      // Jika tidak dibayar dalam 24 jam, pembayaran dianggap kedaluwarsa
+      setTimeout(() => {
+        if (!selectedPayment) {
+          alert("Payment code expired. Please try again.");
+          location.reload();
+        }
+      }, 86400000); // 24 jam dalam milidetik
+    </script>
+  </body>
+</html>

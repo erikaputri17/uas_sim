@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <style>
+      /* Sidebar styles */
+      .wrapper {
+        display: flex;
+        width: 100%;
+      }
+
+      #sidebar {
+        min-width: 250px;
+        max-width: 250px;
+        min-height: 100vh;
+        background: #343a40;
+        color: #fff;
+        transition: all 0.3s;
+      }
+
+      #sidebar.active {
+        margin-left: -250px;
+      }
+
+      #sidebar .sidebar-header {
+        padding: 20px;
+        background: #212529;
+      }
+
+      #sidebar ul.components {
+        padding: 20px 0;
+      }
+
+      #sidebar ul li a {
+        padding: 10px 20px;
+        display: block;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      #sidebar ul li a:hover {
+        background: #212529;
+      }
+
+      #sidebar ul li.active > a {
+        background: #212529;
+      }
+
+      /* Content styles */
+      #content {
+        width: 100%;
+        min-height: 100vh;
+        transition: all 0.3s;
+      }
+
+      .card {
+        margin-bottom: 20px;
+        border: none;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-header {
+        background-color: #343a40;
+        color: white;
+      }
+
+      /* Icon styles */
+      .fas {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <nav id="sidebar">
+        <div class="sidebar-header">
+          <h3>Admin Dashboard</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+          <li class="active">
+            <a href="index.php"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li>
+            <a href="pengguna.php"><i class="fas fa-users"></i> Laporan Pengguna</a>
+          </li>
+          <li>
+            <a href="penyewaan.php"><i class="fas fa-shopping-cart"></i> Laporan Penyewaan</a>
+          </li>
+          <li>
+            <a href="barang.php"><i class="fas fa-box"></i> Laporan Barang</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Page Content -->
+      <div id="content">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="btn btn-dark">
+              <i class="fas fa-bars"></i>
+            </button>
+            <span class="navbar-text"> Welcome, Admin </span>
+          </div>
+        </nav>
+
+        <!-- Cards -->
+        <div class="container-fluid py-4">
+          <div class="row">
+            <div class="col-md-3 mb-4">
+              <div class="card bg-primary text-white" id="totalPengguna" style="cursor: pointer">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <h6 class="card-title">Total Pengguna</h6>
+                      <h3 class="mb-0">150</h3>
+                    </div>
+                    <i class="fas fa-users fa-2x"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 mb-4">
+              <div class="card bg-primary text-white" id="totalPengguna" style="cursor: pointer">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <h6 class="card-title">Total Pembelian</h6>
+                      <h3 class="mb-0">Rp 5.2M</h3>
+                    </div>
+                    <i class="fas fa-shopping-cart fa-2x"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 mb-4">
+              <div class="card bg-primary text-white" id="totalPengguna" style="cursor: pointer">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <h6 class="card-title">Total Penjualan</h6>
+                      <h3 class="mb-0">Rp 7.8M</h3>
+                    </div>
+                    <i class="fas fa-cash-register fa-2x"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 mb-4">
+              <div class="card bg-primary text-white" id="totalPengguna" style="cursor: pointer">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <h6 class="card-title">Total Barang</h6>
+                      <h3 class="mb-0">450</h3>
+                    </div>
+                    <i class="fas fa-box fa-2x"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts -->
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="card">
+                <div class="card-header">Statistik Penjualan</div>
+                <div class="card-body">
+                  <canvas id="salesChart"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="card">
+                <div class="card-header">Distribusi Produk</div>
+                <div class="card-body">
+                  <canvas id="productChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">Trend Pembelian</div>
+                <div class="card-body">
+                  <canvas id="purchaseChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+      <div class="card bg-primary text-white">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-title">Total Pengguna</h6>
+              <!-- Tempat jumlah pengguna -->
+              <h3 class="mb-0" id="totalPengguna">Loading...</h3>
+            </div>
+            <i class="fas fa-users fa-2x"></i>
+          </div>
+        </div>
+        <a href="pengguna.php" class="btn btn-light w-100 mt-3">Lihat Laporan</a>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      import React from "react";
+      import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell } from "recharts";
+      import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+      import { Users, ShoppingCart, Package, DollarSign } from "lucide-react";
+
+      // Sample data for user reports pie chart
+      const userReportData = [
+        { name: "Active Users", value: 65 },
+        { name: "New Users", value: 25 },
+        { name: "Inactive Users", value: 10 },
+      ];
+
+      // Sample data for rental reports bar chart
+      const rentalReportData = [
+        { name: "Laptop", count: 150 },
+        { name: "Projector", count: 120 },
+        { name: "Camera", count: 90 },
+        { name: "Audio System", count: 75 },
+        { name: "Microphone", count: 45 },
+      ];
+
+      const COLORS = ["#3B82F6", "#10B981", "#F59E0B", "#EF4444"];
+
+      const AdminDashboard = () => {
+        return (
+          <div className="min-h-screen bg-gray-100">
+            <div className="p-6">
+              {/* Stats Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                <Card className="bg-blue-500 text-white">
+                  <CardContent className="p-6">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <p className="text-sm font-medium">Total Users</p>
+                        <h3 className="text-2xl font-bold">250</h3>
+                      </div>
+                      <Users size={24} />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-green-500 text-white">
+                  <CardContent className="p-6">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <p className="text-sm font-medium">Active Rentals</p>
+                        <h3 className="text-2xl font-bold">180</h3>
+                      </div>
+                      <ShoppingCart size={24} />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-yellow-500 text-white">
+                  <CardContent className="p-6">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <p className="text-sm font-medium">Total Items</p>
+                        <h3 className="text-2xl font-bold">480</h3>
+                      </div>
+                      <Package size={24} />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-red-500 text-white">
+                  <CardContent className="p-6">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <p className="text-sm font-medium">Revenue</p>
+                        <h3 className="text-2xl font-bold">$12.5K</h3>
+                      </div>
+                      <DollarSign size={24} />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Charts */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>User Distribution</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="h-64">
+                      <PieChart width={400} height={250}>
+                        <Pie data={userReportData} cx={200} cy={125} innerRadius={60} outerRadius={80} fill="#8884d8" paddingAngle={5} dataKey="value">
+                          {userReportData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                          ))}
+                        </Pie>
+                        <Tooltip />
+                      </PieChart>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Most Rented Items</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="h-64">
+                      <BarChart
+                        width={400}
+                        height={250}
+                        data={rentalReportData}
+                        margin={{
+                          top: 5,
+                          right: 30,
+                          left: 20,
+                          bottom: 5,
+                        }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Bar dataKey="count" fill="#3B82F6" />
+                      </BarChart>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      export default AdminDashboard;
+    </script>
+  </body>
+</html>

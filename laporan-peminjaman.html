@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loan Report - Returned & Paid</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+      }
+      header {
+        background-color: #4caf50;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+      .container {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+      th {
+        background-color: #4caf50;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      .status-completed {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Laporan Peminjaman</h1>
+    </header>
+
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+            <th>Tanggal Peminjaman</th>
+            <th>Nama Penyewa</th>
+            <th>Nama Barang</th>
+            <th>Kondisi Barang</th>
+            <th>Masa Pinjam</th>
+          </tr>
+        </thead>
+        <tbody id="loanReportTableBody">
+          <!-- Data peminjaman akan dimuat di sini -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      // Sample data, bisa diganti dengan data dari server atau localStorage
+      const loanData = [
+        {
+          loanDate: "10/12/2024",
+          renterName: "John Doe",
+          itemName: "Tenda Single",
+          condition: "Baik",
+          rentalPeriod: "12/12/2024 - 14/12/2024",
+        },
+        {
+          loanDate: "12/12/2024",
+          renterName: "Jane Smith",
+          itemName: "Sepatu Hiking Pria",
+          condition: "Bagus",
+          rentalPeriod: "14/12/2024 - 16/12/2024",
+        },
+        {
+          loanDate: "15/12/2024",
+          renterName: "Denny",
+          itemName: "Kursi Lipat",
+          condition: "Baik",
+          rentalPeriod: "17/12/2024 - 19/12/2024",
+        },
+      ];
+
+      // Menambahkan data ke dalam tabel
+      const tableBody = document.getElementById("loanReportTableBody");
+      loanData.forEach((data) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+                <td>${data.loanDate}</td>
+                <td>${data.renterName}</td>
+                <td>${data.itemName}</td>
+                <td>${data.condition}</td>
+                <td>${data.rentalPeriod}</td>
+            `;
+
+        tableBody.appendChild(tr);
+      });
+    </script>
+  </body>
+</html>

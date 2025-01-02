@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Return Items</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+      }
+      header {
+        background-color: #4caf50;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+      .container {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+      th {
+        background-color: #4caf50;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      .status-returned {
+        color: green;
+      }
+      .status-pending {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Return Items</h1>
+    </header>
+
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+            <th>Tanggal Penyewaan</th>
+            <th>Nama Penyewa</th>
+            <th>Nama Barang</th>
+            <th>Kondisi Saat Dikembalikan</th>
+            <th>Jumlah</th>
+            <th>Keterangan</th>
+          </tr>
+        </thead>
+        <tbody id="returnTableBody">
+          <!-- Data pengembalian akan dimuat di sini -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      // Sample data, bisa diganti dengan data dari server atau localStorage
+      const returnData = [
+        {
+          rentalDate: "10/12/2024",
+          renterName: "John Doe",
+          itemName: "Tenda Single",
+          condition: "Baik",
+          quantity: 1,
+          status: "Sudah Dikembalikan",
+        },
+        {
+          rentalDate: "12/12/2024",
+          renterName: "Jane Smith",
+          itemName: "Sepatu Hiking Pria",
+          condition: "-",
+          quantity: 2,
+          status: "Belum Dikembalikan",
+        },
+        {
+          rentalDate: "14/12/2024",
+          renterName: "Denny",
+          itemName: "Kursi Lipat",
+          condition: "Baik",
+          quantity: 1,
+          status: "Sudah Dikembalikan",
+        },
+      ];
+
+      // Menambahkan data ke dalam tabel
+      const tableBody = document.getElementById("returnTableBody");
+      returnData.forEach((data) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+                <td>${data.rentalDate}</td>
+                <td>${data.renterName}</td>
+                <td>${data.itemName}</td>
+                <td>${data.condition}</td>
+                <td>${data.quantity}</td>
+                <td class="${data.status === "Sudah Dikembalikan" ? "status-returned" : "status-pending"}">${data.status}</td>
+            `;
+
+        tableBody.appendChild(tr);
+      });
+    </script>
+  </body>
+</html>

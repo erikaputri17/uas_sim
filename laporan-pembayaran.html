@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laporan Pembayaran</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+      }
+      header {
+        background-color: #4caf50;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+      .container {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+      th {
+        background-color: #4caf50;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      .payment-proof img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Laporan Pembayaran</h1>
+    </header>
+
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+            <th>Tanggal Pembayaran</th>
+            <th>Nama Penyewa</th>
+            <th>Nama Barang</th>
+            <th>Jumlah Barang</th>
+            <th>Bukti Pembayaran</th>
+          </tr>
+        </thead>
+        <tbody id="paymentReportTableBody">
+          <!-- Data pembayaran akan dimuat di sini -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      // Sample data, bisa diganti dengan data dari server atau localStorage
+      const paymentData = [
+        {
+          paymentDate: "12/12/2024",
+          renterName: "John Doe",
+          itemName: "Tenda Single",
+          quantity: 1,
+          paymentProof: "images/receipt1.jpg",
+        },
+        {
+          paymentDate: "13/12/2024",
+          renterName: "Jane Smith",
+          itemName: "Sepatu Hiking Pria",
+          quantity: 2,
+          paymentProof: "images/receipt2.jpg",
+        },
+        {
+          paymentDate: "15/12/2024",
+          renterName: "Denny",
+          itemName: "Kursi Lipat",
+          quantity: 3,
+          paymentProof: "images/receipt3.jpg",
+        },
+      ];
+
+      // Menambahkan data ke dalam tabel
+      const tableBody = document.getElementById("paymentReportTableBody");
+      paymentData.forEach((data) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+                <td>${data.paymentDate}</td>
+                <td>${data.renterName}</td>
+                <td>${data.itemName}</td>
+                <td>${data.quantity}</td>
+                <td class="payment-proof">
+                    <img src="${data.paymentProof}" alt="Bukti Pembayaran">
+                </td>
+            `;
+
+        tableBody.appendChild(tr);
+      });
+    </script>
+  </body>
+</html>

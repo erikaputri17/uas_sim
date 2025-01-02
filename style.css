@@ -1,0 +1,215 @@
+/* styles.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Gellatio;
+  color: #fff;
+  background: url("GAMBAR/SIM.png") no-repeat center center/cover;
+}
+
+.header {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: #9fc7aad5;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #ffffff;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #0f0f0f;
+  padding: 10px 20px;
+  font-size: 22px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #fdfdfd;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-icons a {
+  margin-right: 20px;
+  font-size: 25px;
+  font-weight: 400;
+  color: black;
+  text-decoration: none;
+  transition: all 0.43s ease;
+}
+
+.nav-icons a:hover {
+  color: white;
+  transition: scale(1.1);
+}
+
+#menu-icon {
+  font-size: 35px;
+  color: black;
+  z-index: 10001;
+  cursor: pointer;
+}
+
+.section {
+  padding: 5% 10%;
+}
+
+.main-home {
+  width: 100%;
+}
+
+.main.text h5 {
+  color: #fff;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.main-btn {
+  display: inline-block;
+  color: #070707;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: capitalize;
+  border: 2px solid #111;
+  padding: 12px 25px;
+  transition: all 0.43s ease;
+  position: center;
+}
+
+.main-btn:hover {
+  background-color: #040404;
+  color: #f9f6f6;
+}
+
+.main-btn i {
+  vertical-align: middle;
+}
+
+.main-btn i:hover {
+  transition: all 0.43s ease;
+  color: white;
+  background-color: black;
+}
+
+.hero {
+  text-align: center;
+  margin-top: auto;
+  padding-bottom: 50px; /* Berikan ruang di bawah */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Posisikan ke tengah secara vertikal */
+  height: 100%; /* Pastikan menggunakan seluruh tinggi layar */
+}
+
+.hero h1 {
+  font-size: 48px;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  margin-bottom: 10px; /* Jarak antar elemen */
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn.login {
+  background: #d9a02b;
+  color: #fff;
+}
+
+.btn.signin {
+  background: #fff;
+  color: #333;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.social {
+  margin-top: 20px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.follow-section {
+  position: absolute;
+  bottom: 0;
+  width: 100%; /* Penuhi lebar layar */
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5); /* Transparansi dengan warna hitam */
+  border-top-left-radius: 100%; /* Membuat lengkungan */
+  border-top-right-radius: 100%;
+  padding: 40px 0;
+  height: 100px;
+  margin-top: auto;
+}
+
+.follow-content {
+  position: relative;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.scroll-icon {
+  font-size: 24px;
+  margin-bottom: 10px;
+  animation: slide-down 1.5s infinite;
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(10px);
+    opacity: 0.5;
+  }
+}

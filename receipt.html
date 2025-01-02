@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receipt</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fdf6e4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .receipt-container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        width: 400px;
+        text-align: center;
+      }
+      .receipt-container h1 {
+        color: #4caf50;
+        margin-bottom: 20px;
+      }
+      .receipt-container p {
+        margin: 10px 0;
+        font-size: 1rem;
+      }
+      .receipt-container img {
+        width: 100px;
+        margin: 20px 0;
+      }
+      .button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 20px;
+      }
+      .button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="receipt-container">
+      <h1>Payment Successful!</h1>
+      <p>Thank you for your payment.</p>
+      <img src="images/success-icon.png" alt="Success Icon" />
+      <p><strong>Item:</strong> <span id="itemName">Tenda Single</span></p>
+      <p><strong>Total Payment:</strong> <span id="totalPayment">Rp 125,000</span></p>
+      <p><strong>Payment Method:</strong> <span id="paymentMethod">Bank Transfer (BCA)</span></p>
+      <p><strong>Rental Period:</strong></p>
+      <p><span id="rentalStart">12/12/2024</span> - <span id="rentalEnd">14/12/2024</span></p>
+      <a href="equipment.html" class="button">Back to Equipment</a>
+    </div>
+
+    <script>
+      // Load data from localStorage
+      const selectedItem = JSON.parse(localStorage.getItem("selectedItem"));
+      const paymentMethod = localStorage.getItem("paymentMethod");
+      const rentalStart = localStorage.getItem("rentalStart");
+      const rentalEnd = localStorage.getItem("rentalEnd");
+
+      // Update receipt details
+      document.getElementById("itemName").innerText = selectedItem ? selectedItem.name : "Item not found";
+      document.getElementById("totalPayment").innerText = selectedItem ? selectedItem.price : "Rp 0";
+      document.getElementById("paymentMethod").innerText = paymentMethod || "Not specified";
+      document.getElementById("rentalStart").innerText = rentalStart || "Not set";
+      document.getElementById("rentalEnd").innerText = rentalEnd || "Not set";
+    </script>
+  </body>
+</html>

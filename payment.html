@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment - Rent Mountain</title>
+    <style>
+      /* Reset margin dan padding */
+      body {
+        font-family: Gellatio;
+        margin: 0;
+        padding: 0;
+        background: url("GAMBAR/payment.png") no-repeat center center/cover;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      /* Box untuk payment form */
+      .payment-box {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        text-align: center;
+      }
+
+      /* Judul dan tampilan form */
+      .payment-box h2 {
+        font-size: 2rem;
+        color: #85c593;
+        margin-bottom: 20px;
+      }
+
+      /* Label dan input */
+      .payment-box label {
+        display: block;
+        margin: 10px 0 5px;
+        font-size: 1rem;
+      }
+
+      .payment-box input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+        box-sizing: border-box;
+      }
+
+      /* Tombol */
+      .payment-box button {
+        padding: 10px 20px;
+        background-color: #967121;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        width: 100%;
+      }
+
+      .payment-box button:hover {
+        background-color: #a87618;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="payment-box">
+      <h2>Form Peminjaman</h2>
+
+      <!-- Form Konfirmasi Pembayaran -->
+      <form action="process-payment.php" method="POST">
+        <label for="customerName">Nama Peminjam:</label>
+        <input type="text" id="customerName" name="customerName" placeholder="Masukkan Nama Anda" required />
+
+        <label for="rentalStart">Tanggal Peminjaman:</label>
+        <input type="date" id="rentalStart" name="rentalStart" required />
+
+        <label for="rentalEnd">Tanggal Pengembalian:</label>
+        <input type="date" id="rentalEnd" name="rentalEnd" required />
+
+        <!-- Hidden input untuk data barang -->
+        <input type="hidden" id="itemName" name="itemName" />
+        <input type="hidden" id="itemPrice" name="itemPrice" />
+
+        <!-- Tombol Kirim -->
+        <button type="submit">Sewa Sekarang</button>
+      </form>
+    </div>
+
+    <script>
+      // Ambil data dari localStorage dan isi formulir
+      window.onload = function () {
+        try {
+          const selectedItem = JSON.parse(localStorage.getItem("selectedItem"));
+          if (selectedItem && selectedItem.name && selectedItem.price) {
+            document.getElementById("itemName").value = selectedItem.name;
+            document.getElementById("itemPrice").value = selectedItem.price;
+          } else {
+            throw new Error("No item data found");
+          }
+        } catch (e) {
+          alert("No item selected! Please select an item first.");
+          window.location.href = "equipment.html";
+        }
+      };
+    </script>
+  </body>
+</html>

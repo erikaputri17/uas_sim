@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In - Rent Mountain</title>
+    <style>
+      body {
+        font-family: Gellatio;
+        background: url("GAMBAR/bg1.png") no-repeat center center/cover;
+        margin: 0;
+        padding: 0;
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .logo span {
+        color: #ffffff;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #9fc7aab6;
+        padding: 15px 30px;
+        color: rgb(255, 255, 255);
+      }
+
+      header .menu {
+        display: flex;
+        gap: 20px;
+      }
+      header .menu a {
+        text-decoration: none;
+        font-family: Gellatio;
+        color: rgb(48, 45, 45);
+        font-weight: bold;
+        padding: 8px 15px;
+        border-radius: 5px;
+      }
+      .buttons {
+        margin-top: 20px;
+      }
+      header .menu a.active {
+        background-color: #9e770d;
+      }
+      .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 60px);
+      }
+      .form-box {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        width: 300px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #551a25;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      button:hover {
+        background-color: #551a25;
+      }
+      .link {
+        text-align: center;
+        margin-top: 10px;
+      }
+      .link a {
+        text-decoration: none;
+        color: #551a25;
+        font-weight: bold;
+      }
+    </style>
+    <script>
+      function handleSignIn(event) {
+        event.preventDefault();
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const role = document.getElementById("role").value; // Ambil nilai role
+
+        // Simpan data ke localStorage atau kirim ke server via API
+        localStorage.setItem("username", username);
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+        localStorage.setItem("role", role); // Simpan role ke localStorage
+        localStorage.setItem("isSignedIn", true);
+
+        alert("Registrasi berhasil! Silakan login.");
+        window.location.href = "login.html";
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="logo">RentMountain</div>
+      <div class="menu">
+        <a href="dashboard.html">Home</a>
+        <a href="equipment.html">Equipment</a>
+        <a href="payment.html">Payment</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </header>
+    <div class="form-container">
+      <div class="form-box">
+        <form id="signin-form" action="process_signin.php" method="POST">
+          <h2>Sign In</h2>
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+
+          <label for="role">Role</label>
+          <select id="role" name="role" required>
+            <option value="" disabled selected>Pilih Role</option>
+            <option value="customer">Customer</option>
+            <option value="admin">Admin</option>
+          </select>
+
+          <button type="submit">Daftar</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

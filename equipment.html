@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Equipment - Rent Mountain</title>
+    <style>
+      body {
+        font-family: Gellatio;
+        margin: 0;
+        padding: 0;
+        background: url("GAMBAR/BG3.png") no-repeat center center/cover;
+        color: #fff;
+      }
+      header {
+        background-color: #9fc7aad5;
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+      header .menu {
+        display: flex;
+        gap: 15px;
+      }
+      header .menu a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      header .menu a:hover {
+        text-decoration: underline;
+      }
+      .banner-content {
+        margin: 20px auto;
+        padding: 20px;
+        background-image: url("GAMBAR/our.png");
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        width: 90%;
+        height: 100px;
+        text-align: center;
+        color: white;
+      }
+      .banner-content h1 {
+        font-size: 2rem;
+        margin: 0 0 10px 0;
+        color: white;
+      }
+      .search-bar {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      .search-bar input {
+        padding: 10px;
+        width: 300px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .search-bar button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #9fc7aad5;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .search-bar button:hover {
+        background-color: #9fc7aad5;
+      }
+      .container {
+        display: flex;
+        padding: 20px;
+      }
+      .sidebar {
+        width: 20%;
+        background-color: #8b4513;
+        padding: 15px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .sidebar button {
+        padding: 10px 15px;
+        border: none;
+        background-color: #f4a460;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        text-align: left;
+      }
+      .sidebar button:hover {
+        background-color: #e69555;
+      }
+      .content {
+        width: 80%;
+        padding: 20px;
+        overflow-y: auto;
+        height: calc(100vh - 350px);
+      }
+    
+      /* Flexbox untuk menampilkan barang secara mendatar */
+      .items-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* Pusatkan item */
+      gap: 20px;
+      margin: 20px auto;
+      max-width: 1200px; /* Maksimum lebar container */
+    }
+    
+      .item {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px;
+        width: 200px;
+        background-color: rgb(179, 119, 41);
+        color: rgb(36, 23, 1);
+        text-align: center;
+        box-sizing: border-box;
+      }
+    
+      .item h3 {
+        margin-bottom: 10px;
+      }
+    
+      .item button {
+        padding: 5px 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    
+      .item button:hover {
+        background-color: #45a049;
+      }
+    
+      .item img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+    </style>
+    
+  <body onload="displayItems()">
+    <header>
+      <div class="logo">Rent Mountain</div>
+      <nav class="menu">
+        <a href="dashboard.html">Home</a>
+        <a href="equipment.html">Equipment</a>
+        <a href="payment.html">Payment</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+    <div class="banner-content">
+      <h1>Our Rent Collection</h1>
+      <div class="search-bar">
+        <input type="text" id="search" placeholder="Search for equipment..." />
+        <button onclick="searchItems()">Search</button>
+      </div>
+    </div>
+    <body>
+  
+      <!-- Container Barang -->
+      <div class="items-container">
+        <!-- Barang 1 -->
+        <div class="item">
+          <img src="gambar/tenda.png" alt="Tenda Single" />
+          <h3>Tenda Single</h3>
+          <p>Harga: Rp 125.000/hari</p>
+          <button onclick="selectItem('Tenda Single', 125000)">Sewa</button>
+        </div>
+  
+        <!-- Barang 2 -->
+        <div class="item">
+          <img src="gambar/tas.png" alt="Brown Casual Bag" />
+          <h3>Brown Casual Bag</h3>
+          <p>Harga: Rp 60.000/hari</p>
+          <button onclick="selectItem('Brown Casual Bag', 60000)">Sewa</button>
+        </div>
+  
+        <!-- Barang 3 -->
+        <div class="item">
+          <img src="gambar/sepatupria.png" alt="Sepatu Hiking Pria" />
+          <h3>Sepatu Hiking Pria</h3>
+          <p>Harga: Rp 45.000/hari</p>
+          <button onclick="selectItem('Sepatu Hiking Pria', 45000)">Sewa</button>
+        </div>
+  
+        <!-- Barang 4 -->
+        <div class="item">
+          <img src="gambar/jaketwanita.png" alt="Jaket Wanita" />
+          <h3>Jaket Wanita</h3>
+          <p>Harga: Rp 40.000/hari</p>
+          <button onclick="selectItem('Jaket Wanita', 40000)">Sewa</button>
+        </div>
+  
+        <!-- Barang 5 -->
+        <div class="item">
+          <img src="gambar/kursi.png" alt="Kursi Lipat" />
+          <h3>Kursi Lipat</h3>
+          <p>Harga: Rp 30.000/hari</p>
+          <button onclick="selectItem('Kursi Lipat', 30000)">Sewa</button>
+        </div>
+  
+        <!-- Barang 6 -->
+        <div class="item">
+          <img src="gambar/sleep.png" alt="Sleeping Bag" />
+          <h3>Sleeping Bag</h3>
+          <p>Harga: Rp 50.000/hari</p>
+          <button onclick="selectItem('Sleeping Bag', 50000)">Sewa</button>
+        </div>
+  
+        <!-- Barang 7 -->
+        <div class="item">
+          <img src="gambar/tas2.png" alt="Tas Gunung 35L" />
+          <h3>Tas Gunung 35L</h3>
+          <p>Harga: Rp 40.000/hari</p>
+          <button onclick="selectItem('Tas Gunung 35L', 40000)">Sewa</button>
+        </div>
+  
+        <!-- Barang 8 -->
+        <div class="item">
+          <img src="gambar/topiwanita.png" alt="Bucket Hat Wanita" />
+          <h3>Bucket Hat Wanita</h3>
+          <p>Harga: Rp 10.000/hari</p>
+          <button onclick="selectItem('Bucket Hat Wanita', 10000)">Sewa</button>
+        </div>
+  
+        <!-- Barang 9 -->
+        <div class="item">
+          <img src="gambar/cookingset.png" alt="Cooking Set 2.0" />
+          <h3>Cooking Set 2.0</h3>
+          <p>Harga: Rp 15.000/hari</p>
+          <button onclick="selectItem('Cooking Set 2.0', 15000)">Sewa</button>
+        </div>
+  
+        <!-- Barang 10 -->
+        <div class="item">
+          <img src="gambar/gelas.png" alt="Gelas Titan 500ml" />
+          <h3>Gelas Titan 500ml</h3>
+          <p>Harga: Rp 10.000/hari</p>
+          <button onclick="selectItem('Gelas Titan 500ml', 10000)">Sewa</button>
+        </div>
+      </div>
+  
+      <script>
+        // Fungsi untuk menyimpan item ke localStorage dan pindah ke halaman payment
+        function selectItem(name, price) {
+          const selectedItem = { name: name, price: price };
+          localStorage.setItem("selectedItem", JSON.stringify(selectedItem));
+          window.location.href = "payment.html"; // Redirect ke halaman pembayaran
+        }
+      </script>
+    </body>
+  </html>
+  </body>
+</html>
